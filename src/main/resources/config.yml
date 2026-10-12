@@ -1,0 +1,30 @@
+# ───────────── Atelier ─────────────
+# Carpetas extra (relativas a la raíz del servidor). Cada una puede tener layout
+# Oraxen (items/ glyphs/ recipes/ pack/) o ItemsAdder (contents/<namespace>/...).
+sources:
+  - plugins/Atelier/import/oraxen
+  - plugins/Atelier/import/itemsadder
+
+# Lee (solo lectura) plugins/Oraxen y plugins/ItemsAdder si existen.
+auto-detect-plugins: true
+
+pack:
+  enabled: true
+  description: "Atelier resource pack"
+  pack-format: 34            # 1.21 - 1.21.1
+  send-on-join: true
+  force: false
+  prompt: "<green>Este servidor usa recursos personalizados"
+  host:
+    mode: embedded           # embedded | external
+    bind-port: 8082
+    public-url: "http://127.0.0.1:8082/pack.zip"   # CAMBIA por la IP/dominio público
+    external-url: ""         # si mode=external: URL del zip que tú subes
+    external-sha1: ""        # opcional; si vacío se calcula del zip local
+
+blocks:
+  # Los noteblocks vanilla no se pueden afinar (sus estados se usan para bloques custom)
+  disable-vanilla-noteblock-tuning: true
+
+chat:
+  replace-glyph-placeholders: true

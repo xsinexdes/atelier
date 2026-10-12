@@ -1,0 +1,197 @@
+# Formato compatible con Oraxen (displayname, material, Pack, mechanics...).
+# Los colores aceptan MiniMessage (<red>) o códigos &c / &#RRGGBB.
+
+ruby:
+  displayname: "<gradient:#ff3b6b:#ff9ab0>Rubí"
+  material: PAPER
+  lore:
+    - "<gray>Una gema de ejemplo"
+  Pack:
+    generate_model: true
+    parent_model: item/generated
+    textures:
+      - default/ruby
+
+ruby_sword:
+  displayname: "<red>Espada de Rubí"
+  material: DIAMOND_SWORD
+  Unbreakable: true
+  ItemFlags: [HIDE_ATTRIBUTES, HIDE_UNBREAKABLE]
+  Enchantments:
+    sharpness: 5
+  AttributeModifiers:
+    - { attribute: ATTACK_SPEED, amount: 0.6, operation: 0, slot: HAND }
+  Pack:
+    generate_model: true
+    parent_model: item/handheld
+    textures:
+      - default/ruby
+
+ruby_block:
+  displayname: "<red>Bloque de Rubí"
+  material: PAPER
+  Pack:
+    generate_model: true
+    parent_model: block/cube_all
+    textures:
+      - default/ruby_block
+  mechanics:
+    block:
+      custom-variation: 1          # índice de estado noteblock (1..798). Omite para asignar automático
+      block-sounds:
+        break-sound: block.stone.break
+        place-sound: block.stone.place
+      breaking:
+        - when: [minecraft:iron_pickaxe, minecraft:diamond_pickaxe, minecraft:netherite_pickaxe]
+          drops:
+            - { item: ruby_block, probability: 1.0 }
+        - else:
+          drops: []
+
+ruby_pedestal:
+  displayname: "<red>Pedestal de Rubí"
+  material: PAPER
+  Pack:
+    generate_model: true
+    parent_model: block/cube_all
+    textures:
+      - default/ruby_block
+  mechanics:
+    furniture:
+      type: DISPLAY_ENTITY
+      hitboxes:
+        - 0,0,0 0.9,0.9
+      barrier: true
+      display_entity_properties:
+        display_transform: NONE
+        scale: { x: 0.9, y: 0.9, z: 0.9 }
+      limited_placing:
+        floor: true
+        wall: false
+        roof: false
+
+ruby_staff:
+  displayname: "<red>Cetro de Rubí"
+  material: STICK
+  Effects:
+    - { effect: wither, level: 1, duration: 5, target: ENEMY, trigger: HIT }
+    - { effect: speed, level: 2, duration: 10, target: SELF, trigger: HOLD }
+  Pack:
+    generate_model: true
+    parent_model: item/handheld
+    textures:
+      - default/ruby
+
+ruby_helmet:
+  displayname: "<red>Casco de Rubí"
+  material: LEATHER_HELMET
+  ItemFlags: [HIDE_DYE, HIDE_ATTRIBUTES]
+  Armor:
+    set: ruby              # piezas con el mismo set suman para los bonus
+    color: "#C8143C"       # tinte de cuero (se ve puesto sin OptiFine)
+    defense: 3
+    toughness: 1
+    bonus:
+      - { pieces: 2, effect: speed, level: 1 }
+      - { pieces: 4, effect: resistance, level: 1 }
+  Pack:
+    generate_model: true
+    textures:
+      - default/ruby
+
+ruby_chestplate:
+  displayname: "<red>Pechera de Rubí"
+  material: LEATHER_CHESTPLATE
+  ItemFlags: [HIDE_DYE, HIDE_ATTRIBUTES]
+  Armor:
+    set: ruby
+    color: "#C8143C"
+    defense: 7
+    toughness: 1
+    bonus:
+      - { pieces: 2, effect: speed, level: 1 }
+      - { pieces: 4, effect: resistance, level: 1 }
+  Pack:
+    generate_model: true
+    textures:
+      - default/ruby
+
+# ───────── Mecánicas (mismas claves que Oraxen) ─────────
+storm_sword:
+  displayname: "<gradient:#3685EC:#72C1E4>Espada de Tormenta"
+  material: DIAMOND_SWORD
+  lore: ["<gray>Clic derecho: rayos"]
+  AttributeModifiers:
+    - { attribute: ATTACK_DAMAGE, amount: 10, operation: 0, slot: HAND }
+  Pack: { generate_model: true, parent_model: item/handheld, textures: [default/ruby] }
+  mechanics:
+    thor:
+      lightning_bolts_amount: 3
+      random_location_variation: 1.5
+      delay: 10000            # milisegundos
+    durability:
+      value: 3000
+
+blood_sword:
+  displayname: "<gradient:#FA7CBB:#F14658>Espada de Sangre"
+  material: DIAMOND_SWORD
+  Pack: { generate_model: true, parent_model: item/handheld, textures: [default/ruby] }
+  mechanics:
+    lifeleech: { amount: 2 }
+    bleeding: { chance: 0.5, duration: 100, interval: 20, damage_per_interval: 1 }
+    durability: { value: 500 }
+    soulbound: { lose_chance: 0.0 }       # no se pierde al morir
+
+ruby_hammer:
+  displayname: "<red>Martillo de Rubí"
+  material: DIAMOND_PICKAXE
+  lore: ["<gray>Rompe 3x3 y funde menas"]
+  Pack: { generate_model: true, parent_model: item/handheld, textures: [default/ruby] }
+  mechanics:
+    mining: { radius: 1, depth: 1 }
+    smelting: { enabled: true }
+    durability: { value: 4000 }
+    efficiency: { amount: 2 }
+
+ruby_apple:
+  displayname: "<red>Manzana de Rubí"
+  material: PAPER
+  Pack: { generate_model: true, textures: [default/ruby] }
+  components:
+    food: { nutrition: 8, saturation: 12.8, can_always_eat: true }
+    consumable: { consume_seconds: 3 }
+  Effects:
+    - { effect: regeneration, level: 2, duration: 5, target: SELF, trigger: EAT }
+
+ruby_crown:
+  displayname: "<red>Corona de Rubí"
+  material: PAPER
+  Pack: { generate_model: true, textures: [default/ruby] }
+  components:
+    equippable: { slot: HEAD }          # clic derecho para ponértela
+  mechanics:
+    armor_effects:
+      night_vision: { amplifier: 0 }
+
+ruby_bag:
+  displayname: "<gold>Mochila de Rubí"
+  material: PAPER
+  Pack: { generate_model: true, textures: [default/ruby] }
+  mechanics:
+    backpack: { rows: 3, title: "<gold>Mochila" }
+
+ruby_voucher:
+  displayname: "<green>Vale de Rubí"
+  material: PAPER
+  Pack: { generate_model: true, textures: [default/ruby] }
+  mechanics:
+    commands:
+      permission: ""
+      cooldown: 40
+      one_usage: true
+      console:
+        commands: ["give <player> diamond 3"]
+    custom:
+      aviso:
+        event: "CLICK:right:all"
+        actions: ["[message] <green>¡Has canjeado tu vale!", "[sound] entity.player.levelup", "[heal] 4"]

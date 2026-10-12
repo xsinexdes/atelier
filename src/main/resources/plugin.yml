@@ -1,0 +1,14 @@
+name: Atelier
+version: ${project.version}
+main: dev.atelier.AtelierPlugin
+api-version: '1.21'
+description: Custom items, blocks, furniture, armor, menus, glyphs and resource pack. Reads Oraxen and ItemsAdder configs.
+softdepend: [Oraxen, ItemsAdder]
+commands:
+  atelier:
+    description: Atelier main command
+    aliases: [at]
+    usage: /atelier help
+permissions:
+  atelier.admin:
+    default: op

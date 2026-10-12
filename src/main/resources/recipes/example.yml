@@ -1,0 +1,23 @@
+ruby_sword:
+  shape:
+    - _R_
+    - _R_
+    - _S_
+  result:
+    oraxen_item: ruby_sword
+  ingredients:
+    R:
+      oraxen_item: ruby
+    S:
+      minecraft_type: STICK
+
+ruby_block:
+  shape:
+    - RRR
+    - RRR
+    - RRR
+  result:
+    oraxen_item: ruby_block
+  ingredients:
+    R:
+      oraxen_item: ruby

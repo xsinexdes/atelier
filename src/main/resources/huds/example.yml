@@ -1,0 +1,7 @@
+# HUD en la actionbar. Placeholders: %health% %max_health% %food% %armor% %level% %player%
+# %bar_health% %bar_food%  y :glyphs: de tus glyphs.
+vida_comida:
+  type: ACTIONBAR
+  update: 10        # ticks (20 = 1 segundo)
+  text: "<red>♥ %health%/%max_health%   <gold>● %food%"
+  # permission: "mi.hud"   # opcional

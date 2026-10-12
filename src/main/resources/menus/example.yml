@@ -1,0 +1,38 @@
+# Menús: /atelier menu main
+# Acciones: command: x | console: x | message: x | open: otro_menu | close | sound: x | give: item [cantidad]
+# Puedes usar :glyph: en el título y %player% en las acciones.
+main:
+  title: "<gradient:#f9a8d4:#a78bfa>Menú Atelier"
+  rows: 3
+  items:
+    fondo:
+      fill: true
+      item: GRAY_STAINED_GLASS_PANE
+      name: " "
+    joyas:
+      slot: 11
+      item: ruby
+      name: "<red>Joyería"
+      lore: ["<gray>Clic para abrir"]
+      actions: ["open: joyas"]
+    espada:
+      slot: 13
+      item: ruby_sword
+      actions:
+        - "give: ruby_sword 1"
+        - "message: <green>¡Toma tu espada, %player%!"
+        - "sound: entity.player.levelup"
+    cerrar:
+      slot: 15
+      item: BARRIER
+      name: "<red>Cerrar"
+      actions: ["close"]
+
+joyas:
+  title: "<red>Joyería"
+  rows: 3
+  items:
+    fondo: { fill: true, item: BLACK_STAINED_GLASS_PANE, name: " " }
+    gema: { slot: 11, item: ruby, actions: ["give: ruby 1"] }
+    bloque: { slot: 13, item: ruby_block, actions: ["give: ruby_block 1"] }
+    volver: { slot: 22, item: ARROW, name: "<yellow>Volver", actions: ["open: main"] }
