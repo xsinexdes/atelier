@@ -1,0 +1,25 @@
+name: Release
+
+# Crea una release con el .jar al subir un tag, p. ej.:  git tag v0.2.0 && git push --tags
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+      - run: mvn -B -ntp package
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: target/Atelier-*.jar
+          generate_release_notes: true
